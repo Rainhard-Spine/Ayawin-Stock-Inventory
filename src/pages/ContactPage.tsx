@@ -1,5 +1,4 @@
-
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { Mail, Phone, MapPin, MapPin as MapIcon } from "lucide-react";
+import emailjs from "emailjs-com";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -32,7 +31,14 @@ const formSchema = z.object({
   }),
 });
 
+const SERVICE_ID = "Yservice_00dsj1r";
+const TEMPLATE_ID = "template_ymk3gss";
+const PUBLIC_KEY = "lwlF6RN3rfPvwuZKL";
+const whatsappNumber = "254791259510"; // Your WhatsApp number
+
 const ContactPage = () => {
+  const [showWhatsApp, setShowWhatsApp] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -44,10 +50,35 @@ const ContactPage = () => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast.success("Thank you for your message! We'll get back to you soon.");
-    form.reset();
+    // Send email using EmailJS
+    emailjs
+      .send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          name: values.name,
+          email: values.email,
+          phone: values.phone,
+          message: values.message,
+        },
+        PUBLIC_KEY
+      )
+      .then(
+        () => {
+          toast.success("Thank you for your message! You can also contact us via WhatsApp below.");
+          setShowWhatsApp(true);
+          form.reset();
+        },
+        () => {
+          toast.error("Failed to send email. Please try again.");
+        }
+      );
   }
+
+  // WhatsApp message text
+  const whatsappText = encodeURIComponent(
+    `New Contact Message:\nName: ${form.getValues("name")}\nEmail: ${form.getValues("email")}\nPhone: ${form.getValues("phone")}\nMessage: ${form.getValues("message")}`
+  );
 
   return (
     <div>
@@ -126,24 +157,21 @@ const ContactPage = () => {
                 <Button type="submit" className="w-full">Send Message</Button>
               </form>
             </Form>
+            {showWhatsApp && (
+              <div className="mt-6 text-center">
+                <a
+                  href={`https://wa.me/${whatsappNumber}?text=${whatsappText}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition"
+                >
+                  Or Click Here to Send Message via WhatsApp
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </section>
-
-      {/* Map Section */}
-      <section className="bg-gray-100 py-12">
-        <div className="container mx-auto px-4">
-          <div className="bg-white border border-blue-100 h-96 flex flex-col items-center justify-center rounded-lg shadow-xl gap-3">
-            <div className="flex flex-col items-center">
-              <MapIcon className="h-12 w-12 text-blue-400 mb-2" />
-              <h3 className="text-xl font-semibold mb-1">Map Coming Soon</h3>
-              <p className="max-w-md text-center text-gray-600 mb-1">
-                A functional interactive map will appear here.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section> 
     </div>
   );
 };

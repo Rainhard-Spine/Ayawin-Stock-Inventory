@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -25,9 +24,9 @@ const AboutPage = () => {
               <div className="relative">
                 <div className="absolute -top-4 -left-4 w-24 h-24 bg-blue-100 rounded-full" />
                 <img 
-                  src="src/pages/uploads/Founder.jpeg" 
+                  src="src/pages/uploads/Homepage.jpeg" 
                   alt="Team working on inventory" 
-                  className="rounded-lg shadow-xl relative z-10 w-full h-auto"
+                  className="rounded-lg shadow-xl relative z-10 w-full max-w-full h-auto object-cover"
                 />
               </div>
             </div>
@@ -108,6 +107,41 @@ const AboutPage = () => {
         </div>
       </section>
 
+      {/* Meet the Team */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Meet the Team</h2>
+            <p className="text-lg text-gray-600">
+              At Ayawin Stock Solutions, our success is built on a foundation of experienced, passionate professionals.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            <TeamCard
+              name="Martin Koyih"
+              role="Founder / Manager"
+              image="src/pages/uploads/martin.jpg"
+              bio="A visionary leader with deep experience in business operations and inventory management. Martin ensures everything runs smoothly at Ayawin."
+            />
+
+            <TeamCard
+              name="Reinhard Bonnke"
+              role="Technical Team"
+              image="src/pages/uploads/bonnke.jpg"
+              bio="Focused on digital solutions and inventory technologies, Reinhard is the mind behind the systems powering Ayawin’s efficiency."
+            />
+
+            <TeamCard
+              name="Secton Ouma"
+              role="Operations Officer"
+              image="src/pages/uploads/secton.jpeg"
+              bio="Reliable, results-driven, and process-oriented. Secton ensures operations flow seamlessly every day."
+            />
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="section-padding bg-blue-50">
         <div className="container-custom">
@@ -140,6 +174,34 @@ const ValueCard = ({ title, description }: { title: string; description: string 
       </div>
       <h3 className="text-xl font-semibold mb-3">{title}</h3>
       <p className="text-gray-600">{description}</p>
+    </div>
+  );
+};
+
+// Team Card Component
+const TeamCard = ({
+  name,
+  role,
+  image,
+  bio,
+}: {
+  name: string;
+  role: string;
+  image: string;
+  bio: string;
+}) => {
+  return (
+    <div className="bg-white rounded-lg shadow-md p-6 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+      <div className="w-24 h-24 mx-auto mb-4">
+        <img
+          src={image}
+          alt={name}
+          className="rounded-full w-full h-full object-cover border-4 border-blue-100 shadow-sm"
+        />
+      </div>
+      <h3 className="text-xl font-semibold">{name}</h3>
+      <p className="text-blue-600 font-medium mb-2">{role}</p>
+      <p className="text-gray-600 text-sm">{bio}</p>
     </div>
   );
 };

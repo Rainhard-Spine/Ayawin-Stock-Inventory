@@ -1,8 +1,14 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ClipboardCheck, Database, FileText, BarChart, CheckCircle, File } from "lucide-react";
+import {
+  ClipboardCheck,
+  Database,
+  FileText,
+  BarChart,
+  CheckCircle,
+  File,
+} from "lucide-react";
 
 const ServicesPage = () => {
   return (
@@ -21,7 +27,7 @@ const ServicesPage = () => {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="grid grid-cols-1 gap-16">
-               {/* Stock Takes */}
+            {/* Stock Takes */}
             <ServiceItem 
               title="Stock Takes" 
               description="We conduct full physical stock counts and reconcile your inventory records with what's actually on the ground. No more guessing or discrepancies."
@@ -33,9 +39,23 @@ const ServicesPage = () => {
                 "Flexible scheduling including after-hours options"
               ]}
               icon={<ClipboardCheck className="h-12 w-12 text-blue-600" />}
-              imageUrl="src/pages/uploads/stock taking.png" // <-- Make sure this path matches your public folder
+              imageUrl="src/pages/uploads/stock taking.png"
             />
 
+            {/* Stock Management */}
+            <ServiceItem 
+              title="Stock Management" 
+              description="We help you take full control of your inventory by implementing systems and practices that streamline your stock processes and minimize losses."
+              details={[
+                "Real-time stock level tracking",
+                "Automatic low-stock alerts and reorder points",
+                "Inventory categorization and SKU management",
+                "Stock valuation and reporting",
+                "Integration with POS and accounting systems"
+              ]}
+              icon={<BarChart className="h-12 w-12 text-blue-600" />}
+              imageUrl="src/pages/uploads/stock management.png"
+            />
 
             {/* Stock Arrangement */}
             <ServiceItem 
@@ -49,7 +69,7 @@ const ServicesPage = () => {
                 "Staff training on maintaining arrangements"
               ]}
               icon={<Database className="h-12 w-12 text-blue-600" />}
-              imageUrl="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
+              imageUrl="src/pages/uploads/stock arrangement.jpeg"
               reversed
             />
 
@@ -150,7 +170,15 @@ interface ServiceItemProps {
   imageUrl: string;
   reversed?: boolean;
 }
-const ServiceItem = ({ title, description, details, icon, imageUrl, reversed = false }: ServiceItemProps) => {
+
+const ServiceItem = ({
+  title,
+  description,
+  details,
+  icon,
+  imageUrl,
+  reversed = false,
+}: ServiceItemProps) => {
   return (
     <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 items-center ${reversed ? 'md:flex-row-reverse' : ''}`}>
       <div className={reversed ? 'md:order-2' : ''}>
@@ -169,17 +197,16 @@ const ServiceItem = ({ title, description, details, icon, imageUrl, reversed = f
         </ul>
       </div>
       <div className={reversed ? 'md:order-1' : ''}>
-  <div className="rounded-lg overflow-hidden shadow-xl flex justify-center items-center w-full max-w-sm h-64 mx-auto">
-    <img 
-      src={imageUrl} 
-      alt={title} 
-      className="w-full h-full object-cover"
-    />
-  </div>
-</div>
+        <div className="rounded-lg overflow-hidden shadow-xl flex justify-center items-center w-full max-w-sm h-64 mx-auto">
+          <img 
+            src={imageUrl} 
+            alt={title} 
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
     </div>
   );
 };
-
 
 export default ServicesPage;

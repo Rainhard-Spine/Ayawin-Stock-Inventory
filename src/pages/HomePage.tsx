@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, ClipboardCheck, Database, FileText, BarChart, Users } from "lucide-react";
+import { CheckCircle, ClipboardCheck, Database, FileText, BarChart } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const HomePage = () => {
@@ -27,19 +27,19 @@ const HomePage = () => {
                 </Button>
               </div>
             </div>
-            <div className="hidden md:block">
-  <div className="relative">
-    <div className="absolute -top-6 -left-6 w-24 h-24 bg-blue-200 rounded-full opacity-60" />
-    <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-300 rounded-full opacity-40" />
-    <div className="relative bg-white p-0 rounded-lg shadow-xl w-[420px] h-[340px] mx-auto flex items-center justify-center">
-      <img 
-        src="src/pages/uploads/Founder.jpeg" 
-        alt="Inventory Management" 
-        className="rounded-lg object-cover w-full h-full bg-white"
-      />
-    </div>
-  </div>
+
+            {/* Hero Image */}
+            <div className="relative">
+              <div className="absolute -top-6 -left-6 w-24 h-24 bg-blue-200 rounded-full opacity-60" />
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-300 rounded-full opacity-40" />
+              <div className="relative bg-white p-0 rounded-lg shadow-xl w-full max-w-[520px] h-[520px] mx-auto flex items-center justify-center overflow-hidden">
+  <img 
+    src="src/pages/uploads/Homepage.jpeg"
+    alt="Inventory Management"
+    className="w-full h-full object-cover object-center rounded-lg"
+  />
 </div>
+            </div>
           </div>
         </div>
       </section>
@@ -76,6 +76,11 @@ const HomePage = () => {
               title="Stock Takes" 
               description="Accurate inventory counting and reconciliation." 
               icon={<ClipboardCheck className="h-10 w-10 text-blue-600" />}
+            />
+            <ServiceCard 
+              title="Stock Management" 
+              description="Real-time tracking, low-stock alerts, and full inventory control." 
+              icon={<BarChart className="h-10 w-10 text-blue-600" />}
             />
             <ServiceCard 
               title="Stock Arrangement" 
@@ -148,10 +153,9 @@ const HomePage = () => {
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-8">What Our Clients Say</h2>
-            
             <div className="bg-white p-8 rounded-lg shadow-md">
               <p className="text-lg text-gray-600 italic mb-6">
-                "Jstock helped us organize our inventory in just two days. Super efficient!"
+                "Ayawin Stock Solution helped us organize our inventory in just two days. Super efficient!"
               </p>
               <p className="font-medium">— Happy Client</p>
             </div>
@@ -171,28 +175,27 @@ const HomePage = () => {
               <Button asChild size="lg" variant="secondary">
                 <Link to="/quote">Request a Quote</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="text-white border-white hover:bg-blue-700">
+              <Button asChild size="lg" variant="secondary">
                 <Link to="/contact">Contact Us</Link>
               </Button>
             </div>
           </div>
         </div>
       </section>
-
-      <div className="flex justify-center mt-8">
-        <Link
-          to="/auth"
-          className="px-5 py-2 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-800 font-semibold text-lg transition"
-        >
-         
-        </Link>
-      </div>
     </div>
   );
 };
 
 // Service Card Component
-const ServiceCard = ({ title, description, icon }: { title: string; description: string; icon: React.ReactNode }) => {
+const ServiceCard = ({
+  title,
+  description,
+  icon,
+}: {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+}) => {
   return (
     <Card className="transition-all duration-300 hover:shadow-lg">
       <CardContent className="p-6 text-center">
@@ -205,7 +208,13 @@ const ServiceCard = ({ title, description, icon }: { title: string; description:
 };
 
 // Feature Card Component
-const FeatureCard = ({ title, description }: { title: string; description: string }) => {
+const FeatureCard = ({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) => {
   return (
     <div className="p-6 text-center rounded-lg border border-gray-100 bg-white transition-all duration-300 hover:shadow-md">
       <h3 className="text-xl font-semibold mb-3">{title}</h3>
