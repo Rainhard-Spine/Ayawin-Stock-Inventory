@@ -34,7 +34,7 @@ const HomePage = () => {
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-300 rounded-full opacity-40" />
               <div className="relative bg-white p-0 rounded-lg shadow-xl w-full max-w-[520px] h-[520px] mx-auto flex items-center justify-center overflow-hidden">
   <img 
-    src="src/pages/uploads/Homepage.jpeg"
+    src="/pages/uploads/Homepage.jpeg"
     alt="Inventory Management"
     className="w-full h-full object-cover object-center rounded-lg"
   />

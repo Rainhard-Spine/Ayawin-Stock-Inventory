@@ -39,7 +39,7 @@ const ServicesPage = () => {
                 "Flexible scheduling including after-hours options"
               ]}
               icon={<ClipboardCheck className="h-12 w-12 text-blue-600" />}
-              imageUrl="src/pages/uploads/stock taking.png"
+              imageUrl="/pages/uploads/stock taking.png"
             />
 
             {/* Stock Management */}
@@ -54,7 +54,7 @@ const ServicesPage = () => {
                 "Integration with POS and accounting systems"
               ]}
               icon={<BarChart className="h-12 w-12 text-blue-600" />}
-              imageUrl="src/pages/uploads/stock management.png"
+              imageUrl="/pages/uploads/stock management.png"
             />
 
             {/* Stock Arrangement */}
@@ -69,7 +69,7 @@ const ServicesPage = () => {
                 "Staff training on maintaining arrangements"
               ]}
               icon={<Database className="h-12 w-12 text-blue-600" />}
-              imageUrl="src/pages/uploads/stock arrangement.jpeg"
+              imageUrl="/pages/uploads/stock arrangement.jpeg"
               reversed
             />
 
