@@ -22,6 +22,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/supabaseClient";
+import emailjs from "emailjs-com";
+
+const SERVICE_ID = "service_00dsj1r";
+const TEMPLATE_ID = "template_ymk3gss";
+const PUBLIC_KEY = "lwlF6RN3rfPvwuZKL";
+const WHATSAPP_NUMBER = "254791259510";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -61,7 +67,6 @@ const QuotePage = () => {
     },
   });
 
-  // Save to Supabase on submit (map businessSize to business_size)
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const payload = {
       name: values.name,
@@ -69,11 +74,34 @@ const QuotePage = () => {
       phone: values.phone,
       company: values.company,
       service: values.service,
-      business_size: values.businessSize, // map to snake_case
+      business_size: values.businessSize,
       message: values.message,
     };
 
+    // Save to Supabase
     const { error } = await supabase.from("quote_requests").insert([payload]);
+
+    // Send email via EmailJS
+    try {
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          name: values.name,
+          email: values.email,
+          phone: values.phone,
+          company: values.company,
+          service: values.service,
+          business_size: values.businessSize,
+          message: values.message,
+          to_email: "ayawin.ke@gmail.com", // Ensure this matches your EmailJS template variable
+        },
+        PUBLIC_KEY
+      );
+    } catch (e) {
+      // Optionally handle email error
+    }
+
     if (error) {
       toast.error("Failed to submit quote. Please try again.");
     } else {
@@ -84,6 +112,15 @@ const QuotePage = () => {
 
   return (
     <div>
+      {/* Logo at the top */}
+      <div className="flex justify-center items-center py-6">
+        <img
+          src="/uploads/logo.png" // Place logo.png in public/uploads/
+          alt="Ayawin Logo"
+          className="w-32 h-auto"
+        />
+      </div>
+
       {/* Hero Section */}
       <section className="bg-blue-600 py-16 md:py-24 text-white">
         <div className="container mx-auto px-4 md:px-6 text-center">
@@ -239,7 +276,18 @@ const QuotePage = () => {
               </Form>
             </div>
             
-            <div className="mt-12 text-center">
+            <div className="mt-8 text-center">
+              <a
+                href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-6 py-3 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition"
+              >
+                Chat with us on WhatsApp
+              </a>
+            </div>
+
+            <div className="mt-8 text-center">
               <p className="text-lg text-gray-600">
                 Need immediate assistance? Call us at{" "}
                 <a
