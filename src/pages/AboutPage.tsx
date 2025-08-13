@@ -24,7 +24,7 @@ const AboutPage = () => {
               <div className="relative">
                 <div className="absolute -top-4 -left-4 w-24 h-24 bg-blue-100 rounded-full" />
                 <img 
-                  src="/pages/uploads/Homepage.jpeg" 
+                  src="/uploads/Homepage.jpeg" 
                   alt="Team working on inventory" 
                   className="rounded-lg shadow-xl relative z-10 w-full max-w-full h-auto object-cover"
                 />
@@ -121,21 +121,21 @@ const AboutPage = () => {
             <TeamCard
               name="Martin Koyih"
               role="Founder / Manager"
-              image="/pages/uploads/martin.jpg"
+              image="/uploads/martin.jpg"
               bio="A visionary leader with deep experience in business operations and inventory management. Martin ensures everything runs smoothly at Ayawin."
             />
 
             <TeamCard
               name="Reinhard Bonnke"
               role="Technical Team"
-              image="/pages/uploads/bonnke.jpg"
+              image="/uploads/bonnke.jpg"
               bio="Focused on digital solutions and inventory technologies, Reinhard is the mind behind the systems powering Ayawin’s efficiency."
             />
 
             <TeamCard
               name="Secton Ouma"
               role="Operations Officer"
-              image="/pages/uploads/secton.jpeg"
+              image="/uploads/secton.jpeg"
               bio="Reliable, results-driven, and process-oriented. Secton ensures operations flow seamlessly every day."
             />
           </div>

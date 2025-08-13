@@ -1,4 +1,3 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -94,12 +93,12 @@ const QuotePage = () => {
           service: values.service,
           business_size: values.businessSize,
           message: values.message,
-          to_email: "ayawin.ke@gmail.com", // Ensure this matches your EmailJS template variable
+          title: values.service, // Required for your EmailJS template
         },
         PUBLIC_KEY
       );
     } catch (e) {
-      // Optionally handle email error
+      toast.error("Failed to send email notification.");
     }
 
     if (error) {
@@ -115,7 +114,7 @@ const QuotePage = () => {
       {/* Logo at the top */}
       <div className="flex justify-center items-center py-6">
         <img
-          src="/uploads/logo.png" // Place logo.png in public/uploads/
+          src="/uploads/Ayawin logo.jpeg"
           alt="Ayawin Logo"
           className="w-32 h-auto"
         />
@@ -137,7 +136,6 @@ const QuotePage = () => {
           <div className="max-w-3xl mx-auto">
             <div className="bg-gray-50 p-8 rounded-lg shadow-lg">
               <h2 className="text-2xl font-bold mb-6 text-center">Get Your Free Quote</h2>
-              
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -154,7 +152,6 @@ const QuotePage = () => {
                         </FormItem>
                       )}
                     />
-                    
                     <FormField
                       control={form.control}
                       name="email"
@@ -169,7 +166,6 @@ const QuotePage = () => {
                       )}
                     />
                   </div>
-                  
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <FormField
                       control={form.control}
@@ -184,7 +180,6 @@ const QuotePage = () => {
                         </FormItem>
                       )}
                     />
-                    
                     <FormField
                       control={form.control}
                       name="company"
@@ -199,7 +194,6 @@ const QuotePage = () => {
                       )}
                     />
                   </div>
-                  
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <FormField
                       control={form.control}
@@ -227,7 +221,6 @@ const QuotePage = () => {
                         </FormItem>
                       )}
                     />
-                    
                     <FormField
                       control={form.control}
                       name="businessSize"
@@ -252,7 +245,6 @@ const QuotePage = () => {
                       )}
                     />
                   </div>
-                  
                   <FormField
                     control={form.control}
                     name="message"
@@ -260,22 +252,20 @@ const QuotePage = () => {
                       <FormItem>
                         <FormLabel>Details About Your Needs</FormLabel>
                         <FormControl>
-                          <Textarea 
-                            placeholder="Please describe your project, timeline, and any specific requirements" 
+                          <Textarea
+                            placeholder="Please describe your project, timeline, and any specific requirements"
                             rows={5}
-                            {...field} 
+                            {...field}
                           />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  
                   <Button type="submit" size="lg" className="w-full">Request Quote</Button>
                 </form>
               </Form>
             </div>
-            
             <div className="mt-8 text-center">
               <a
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
@@ -286,7 +276,6 @@ const QuotePage = () => {
                 Chat with us on WhatsApp
               </a>
             </div>
-
             <div className="mt-8 text-center">
               <p className="text-lg text-gray-600">
                 Need immediate assistance? Call us at{" "}
@@ -311,7 +300,6 @@ const QuotePage = () => {
               Our simple process for providing you with tailored inventory services
             </p>
           </div>
-          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white p-6 rounded-lg text-center">
               <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
@@ -322,7 +310,6 @@ const QuotePage = () => {
                 Fill out the quote request form with details about your business needs.
               </p>
             </div>
-            
             <div className="bg-white p-6 rounded-lg text-center">
               <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
                 2
@@ -332,7 +319,6 @@ const QuotePage = () => {
                 We'll contact you to discuss specific requirements and answer questions.
               </p>
             </div>
-            
             <div className="bg-white p-6 rounded-lg text-center">
               <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
                 3

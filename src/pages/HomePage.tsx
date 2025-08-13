@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -15,6 +16,7 @@ const HomePage = () => {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
                 Reliable <span className="gradient-text">Inventory Management</span> & Business Support Solutions
               </h1>
+              <p className="text-2xl font-semibold text-blue-700 mb-2">Your Stock Our Solution</p>
               <p className="text-xl text-gray-600 max-w-md">
                 From stock takes to data entry, Ayawin Stock Solutions helps you stay organized, compliant, and in control.
               </p>
@@ -28,17 +30,17 @@ const HomePage = () => {
               </div>
             </div>
 
-            {/* Hero Image */}
+            {/* Hero Image with Logo */}
             <div className="relative">
               <div className="absolute -top-6 -left-6 w-24 h-24 bg-blue-200 rounded-full opacity-60" />
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-300 rounded-full opacity-40" />
               <div className="relative bg-white p-0 rounded-lg shadow-xl w-full max-w-[520px] h-[520px] mx-auto flex items-center justify-center overflow-hidden">
-  <img 
-    src="/pages/uploads/Homepage.jpeg"
-    alt="Inventory Management"
-    className="w-full h-full object-cover object-center rounded-lg"
-  />
-</div>
+                <img 
+                  src="/uploads/Homepage.jpeg"
+                  alt="Inventory Management"
+                  className="w-full h-full object-cover object-center rounded-lg"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -90,17 +92,17 @@ const HomePage = () => {
             <ServiceCard 
               title="KRA Stickers" 
               description="Placement and management of KRA-compliant labels." 
-              icon={<FileText className="h-10 w-10 text-blue-600" />}
+              icon={<FileText className="h-10 w-10 text-blue-600" />} 
             />
             <ServiceCard 
               title="Data Entry" 
               description="Fast and accurate data input for smooth operations." 
-              icon={<FileText className="h-10 w-10 text-blue-600" />}
+              icon={<Database className="h-10 w-10 text-blue-600" />} 
             />
             <ServiceCard 
               title="Accounting" 
               description="Basic bookkeeping and financial data management." 
-              icon={<BarChart className="h-10 w-10 text-blue-600" />}
+              icon={<BarChart className="h-10 w-10 text-blue-600" />} 
             />
             <ServiceCard 
               title="Auditing" 

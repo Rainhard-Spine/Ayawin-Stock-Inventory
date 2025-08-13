@@ -39,7 +39,7 @@ const ServicesPage = () => {
                 "Flexible scheduling including after-hours options"
               ]}
               icon={<ClipboardCheck className="h-12 w-12 text-blue-600" />}
-              imageUrl="/pages/uploads/stock taking.png"
+              imageUrl="/uploads/stock taking.png"
             />
 
             {/* Stock Management */}
@@ -54,7 +54,7 @@ const ServicesPage = () => {
                 "Integration with POS and accounting systems"
               ]}
               icon={<BarChart className="h-12 w-12 text-blue-600" />}
-              imageUrl="/pages/uploads/stock management.png"
+              imageUrl="/uploads/stock management.png"
             />
 
             {/* Stock Arrangement */}
@@ -69,7 +69,7 @@ const ServicesPage = () => {
                 "Staff training on maintaining arrangements"
               ]}
               icon={<Database className="h-12 w-12 text-blue-600" />}
-              imageUrl="/pages/uploads/stock arrangement.jpeg"
+              imageUrl="/uploads/stock arrangement.jpeg"
               reversed
             />
 
@@ -85,7 +85,7 @@ const ServicesPage = () => {
                 "Training on compliance requirements"
               ]}
               icon={<File className="h-12 w-12 text-blue-600" />}
-              imageUrl="src/pages/uploads/KRA.png"
+              imageUrl="public/uploads/KRA.png"
             />
 
             {/* Data Entry */}
@@ -100,7 +100,7 @@ const ServicesPage = () => {
                 "Custom data entry solutions"
               ]}
               icon={<FileText className="h-12 w-12 text-blue-600" />}
-              imageUrl="src/pages/uploads/Data entry.png"
+              imageUrl="public/uploads/Data entry.png"
               reversed
             />
 
@@ -116,7 +116,7 @@ const ServicesPage = () => {
                 "Financial reporting preparation"
               ]}
               icon={<BarChart className="h-12 w-12 text-blue-600" />}
-              imageUrl="src/pages/uploads/Accounting.png"
+              imageUrl="public/uploads/Accounting.png"
             />
 
             {/* Auditing */}

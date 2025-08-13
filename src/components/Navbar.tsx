@@ -17,7 +17,7 @@ const Navbar = () => {
    <div className="flex items-center gap-4">
   <Link to="/" className="flex items-center gap-4">
     <img
-      src="/lovable-uploads/Ayawin logo.jpeg"
+      src="/uploads/Ayawin logo.jpeg"
       alt="Ayawin Stock Solution Logo"
       className="h-20 w-20 rounded-full object-contain shadow-xl border-2 border-blue-200 bg-white"
       style={{ boxShadow: "0 4px 24px 0 rgba(0,0,0,0.13)" }}

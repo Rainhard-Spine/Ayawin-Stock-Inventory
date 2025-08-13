@@ -31,15 +31,13 @@ const formSchema = z.object({
   }),
 });
 
-const SERVICE_ID = "Yservice_00dsj1r";
+const SERVICE_ID = "service_00dsj1r";
 const TEMPLATE_ID = "template_ymk3gss";
 const PUBLIC_KEY = "lwlF6RN3rfPvwuZKL";
 const whatsappNumber = "254791259510"; // Your WhatsApp number
 
 const ContactPage = () => {
-  const [showWhatsApp, setShowWhatsApp] = useState(false);
-
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
@@ -49,10 +47,9 @@ const ContactPage = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Send email using EmailJS
-    emailjs
-      .send(
+  async function onSubmit(values) {
+    try {
+      await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
         {
@@ -60,25 +57,16 @@ const ContactPage = () => {
           email: values.email,
           phone: values.phone,
           message: values.message,
+          title: "Contact Message", // Add this to match your EmailJS template
         },
         PUBLIC_KEY
-      )
-      .then(
-        () => {
-          toast.success("Thank you for your message! You can also contact us via WhatsApp below.");
-          setShowWhatsApp(true);
-          form.reset();
-        },
-        () => {
-          toast.error("Failed to send email. Please try again.");
-        }
       );
+      toast.success("Your message has been sent! We'll get back to you soon.");
+      form.reset();
+    } catch (error) {
+      toast.error("Failed to send message. Please try again.");
+    }
   }
-
-  // WhatsApp message text
-  const whatsappText = encodeURIComponent(
-    `New Contact Message:\nName: ${form.getValues("name")}\nEmail: ${form.getValues("email")}\nPhone: ${form.getValues("phone")}\nMessage: ${form.getValues("message")}`
-  );
 
   return (
     <div>
@@ -91,7 +79,6 @@ const ContactPage = () => {
           </p>
         </div>
       </section>
-
       {/* Contact Form */}
       <section className="py-12 md:py-16 bg-gray-50">
         <div className="container mx-auto px-4 md:px-6">
@@ -144,10 +131,10 @@ const ContactPage = () => {
                     <FormItem>
                       <FormLabel>Your Message</FormLabel>
                       <FormControl>
-                        <Textarea 
-                          placeholder="Type your message here..." 
-                          className="min-h-[120px]" 
-                          {...field} 
+                        <Textarea
+                          placeholder="Type your message here..."
+                          className="min-h-[120px]"
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
@@ -157,18 +144,24 @@ const ContactPage = () => {
                 <Button type="submit" className="w-full">Send Message</Button>
               </form>
             </Form>
-            {showWhatsApp && (
-              <div className="mt-6 text-center">
-                <a
-                  href={`https://wa.me/${whatsappNumber}?text=${whatsappText}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition"
-                >
-                  Or Click Here to Send Message via WhatsApp
-                </a>
-              </div>
-            )}
+            <div className="mt-6 text-center">
+              <a
+                href={`https://wa.me/${whatsappNumber}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition"
+              >
+                Or Click Here to Send Message via WhatsApp
+              </a>
+            </div>
+            <div className="mt-4 text-center">
+              <a
+                href={`tel:+${whatsappNumber}`}
+                className="font-semibold text-blue-700 underline hover:text-blue-900"
+              >
+                Call Us
+              </a>
+            </div>
           </div>
         </div>
       </section>
